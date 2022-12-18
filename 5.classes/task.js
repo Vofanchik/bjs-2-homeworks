@@ -72,23 +72,34 @@ class Library{
         }
     }
 
-    findBookBy(type, value){
-      for (let i = 0; i<this.books.length;i++){
-        if (this.books[i][type] == value){          
-          return this.books[i]
-        }        
-      }
-        return null
-    }
+    // findBookBy(type, value){
+    //   for (let i = 0; i<this.books.length;i++){
+    //     if (this.books[i][type] == value){          
+    //       return this.books[i]
+    //     }        
+    //   }
+    //     return null
+    // }
 
-    giveBookByName(bookName){
-      for (let i = 0; i<this.books.length;i++){
-        if (this.books[i].name == bookName){
-          let chosenBook = this.books[i]
-          this.books.splice(i)
-          return chosenBook
-        }        
+    findBookBy(type, value) {
+      const findResult = this.books.find((item) => item[type] === value);
+      return findResult || null;
       }
-      return null
-    }
+
+//     giveBookByName(bookName){
+//       for (let i = 0; i<this.books.length;i++){
+//         if (this.books[i].name == bookName){
+//           let chosenBook = this.books[i]
+//           this.books.splice(i)
+//           return chosenBook
+//         }        
+//       }
+//       return null
+//     }
+
+    giveBookByName(bookName) {
+      const findResult = this.books.find((item) => item.name === bookName);
+      this.books = this.books.filter((item) => item.name !== bookName);
+      return findResult || null;
+      }
 }
